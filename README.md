@@ -1,40 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# SunFit Discover Diet
 
-## Getting Started
+A beautiful multi-step diet planning application that collects user data and generates personalized nutrition plans using OpenAI.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 🎯 **Multi-step Form**: Collect user data step by step
+- 📊 **BMR Calculation**: Calculate Basal Metabolic Rate using Mifflin-St Jeor equation
+- 🤖 **AI-Powered**: Generate personalized diet plans using OpenAI
+- 📋 **Complete Plans**: Get meal plans, grocery lists, and nutrition tips
+- 💾 **Save Plans**: Download your diet plan as a markdown file
+- 📱 **Responsive**: Beautiful UI that works on all devices
+
+## Tech Stack
+
+- **Frontend**: Next.js, React, TypeScript
+- **UI**: Chakra UI
+- **Forms**: React Hook Form with Zod validation
+- **AI**: OpenAI GPT-4
+- **Styling**: Chakra UI components
+
+## Data Collection Steps
+
+1. **Personal Information**: Name
+2. **Physical Data**: Age, Height (meters), Weight (kg)
+3. **Activity Level**: Sedentary to Extremely Active
+4. **Goal**: Lose Fat or Gain Muscle
+
+## Setup Instructions
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd sunfit-discover-diet
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Environment Setup**
+   ```bash
+   cp .env.example .env.local
+   ```
+   Add your OpenAI API key to `.env.local`:
+   ```
+   OPENAI_API_KEY=your_actual_openai_api_key_here
+   ```
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser**
+   Navigate to `http://localhost:3000`
+
+## API Endpoints
+
+- `POST /api/generate-diet-plan`: Generates personalized diet plan using OpenAI
+
+## How It Works
+
+1. **Data Collection**: Users go through 4 steps to provide their information
+2. **BMR Calculation**: The app calculates BMR using the Mifflin-St Jeor equation
+3. **TDEE Calculation**: Total Daily Energy Expenditure based on activity level
+4. **Goal Adjustment**: Calories adjusted based on fat loss or muscle gain goals
+5. **AI Generation**: Comprehensive prompt sent to OpenAI for diet plan generation
+6. **Results Display**: Beautiful presentation of BMR, calories, and full diet plan
+7. **Save Feature**: Download the complete plan as a markdown file
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── home/           # Landing page components
+│   ├── layout/         # Layout components
+│   └── ui/             # Reusable UI components
+├── context/            # React context for form state
+├── lib/                # Utilities and validations
+├── pages/              # Next.js pages
+│   ├── api/            # API endpoints
+│   ├── results/        # Results pages
+│   └── steps/          # Form step pages
+├── types/              # TypeScript type definitions
+└── styles/             # Global styles
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## License
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.
