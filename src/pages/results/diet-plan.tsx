@@ -4,7 +4,6 @@ import { Box, Button, Text, Heading, Flex, Spinner } from "@chakra-ui/react";
 import { FormLayout } from "@/components/layout/FormLayout";
 import { useFormContext } from "@/context/FormContext";
 import { pdfHandler } from "@/utils/pdfHandler";
-import { DUMMY_DATA } from "@/utils/DUMMY_DATA";
 
 export interface DietPlanResponse {
   tmb: number;
@@ -16,8 +15,8 @@ export interface DietPlanResponse {
 export default function DietPlanPage() {
   const router = useRouter();
   const { formData, resetFormData } = useFormContext();
-  const [dietPlan, setDietPlan] = useState<DietPlanResponse | null>(DUMMY_DATA);
-  const [loading, setLoading] = useState(false);
+  const [dietPlan, setDietPlan] = useState<DietPlanResponse | null>(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const hasGenerated = useRef(false);
 
@@ -78,14 +77,14 @@ export default function DietPlanPage() {
     generateDietPlan();
   };
 
-  // useEffect(() => {
-  //   if (Object.keys(formData).length > 0) {
-  //     generateDietPlan();
-  //   } else {
-  //     router.push("/steps/personal-info");
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [formData, router]);
+  useEffect(() => {
+    if (Object.keys(formData).length > 0) {
+      generateDietPlan();
+    } else {
+      router.push("/steps/personal-info");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData, router]);
 
   if (loading) {
     return (
